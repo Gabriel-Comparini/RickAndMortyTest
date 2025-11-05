@@ -28,6 +28,7 @@ export default function GeneralList({ api, navigation }) {
               <Image source={{ uri: item.image}} style={{ width: 100, height: 100 }} />
               <Text style={ListStyle.text}>Nome: {item.name}</Text>
               <Text style={ListStyle.text}>Status: {item.status}</Text>
+              <Text style={ListStyle.text}>Espécie: {item.species}</Text>
             </TouchableOpacity>
           )}
         />
