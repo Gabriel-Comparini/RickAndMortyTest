@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// Importações
+import { StatusBar } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+// Telas
+import CharactersListScreen from './public/screens/CharactersListScreen.js';
+import CharactersDetailScreen from './public/screens/CharacterDetailScreen.js';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='cls' screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='cls' component={CharactersListScreen} />
+        <Stack.Screen name='cds' component={CharactersDetailScreen} />
+      </Stack.Navigator>
+      <StatusBar hidden={true} />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
