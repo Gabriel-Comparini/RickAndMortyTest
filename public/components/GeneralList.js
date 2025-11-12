@@ -24,7 +24,7 @@ export default function GeneralList({ api, navigation }) {
         <FlatList
           data={data}
           renderItem={({ item }) => (
-            <TouchableOpacity style={ListStyle.item} onPress={() => navigation.navigate("cds")}>
+            <TouchableOpacity style={ListStyle.item} onPress={() => navigation.navigate("cds", { pers: `${api}/${item.id}` })}>
               <Image source={{ uri: item.image}} style={{ width: 100, height: 100 }} />
               <Text style={ListStyle.text}>Nome: {item.name}</Text>
               <Text style={ListStyle.text}>Status: {item.status}</Text>

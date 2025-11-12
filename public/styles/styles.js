@@ -33,3 +33,23 @@ export const ListStyle = StyleSheet.create({
     }
 });
     
+export const CDSStyles = StyleSheet.create({
+    container: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: windowWidth,
+        height: windowHeight,
+        position: 'relative'
+    },
+    btn: {
+        position: 'absolute',
+        top: 100,
+        left: 18,
+        borderRadius: 25,
+        backgroundColor:'#525a80ff',
+        width: 50,
+        height: 50
+
+    }
+});
