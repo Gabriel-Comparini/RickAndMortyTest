@@ -14,23 +14,49 @@ export default function GeneralList({ api, navigation }) {
     searchForData(true);
   }, [api]);
 
+  useEffect(() => {
+    searchForData(true);
+  }, [name]);
+
   const searchForData = async (reset = false) => {
-    if (isLoading || !more) return;
+    if (isLoading) return;
+    if (!reset && !more) return;
 
     setLoading(true);
 
-    const currentPage = reset ? 1 : page;
+    let currentPage = 0;
+
+    if (reset) {
+      currentPage = 1;
+    } else {
+      currentPage = page;
+    }
 
     try {
+      let newItems = [];
       const response = await fetch(`${api}?page=${currentPage}&name=${name}`);
       const json = await response.json();
-      const newItems = Array.isArray(json.results) ? json.results : Array.isArray(json) ? json : [];
+
+      if (Array.isArray(json.results)) {
+        newItems = json.results
+      } else {
+        if (Array.isArray(json)) {
+          newItems = json;
+        } else {
+          newItems = [];
+        }
+      }
 
       if (reset) {
         setData(newItems);
         setPage(2);
       } else {
-        setData(prev => [...prev, ...newItems]);
+        setData(prev => {
+          const map = new Map();
+          [...prev, ...newItems].forEach(item => map.set(item.id, item));
+          return Array.from(map.values());
+        });
+        
         setPage(prev => prev + 1);
       }
 
@@ -50,7 +76,6 @@ export default function GeneralList({ api, navigation }) {
     setName(text);
     setMore(true);
     setPage(1);
-    searchForData(true);
   };
 
   if (initialLoading)
@@ -83,18 +108,8 @@ export default function GeneralList({ api, navigation }) {
             <Text style={ListStyle.text}>Espécie: {item.species}</Text>
           </TouchableOpacity>
         )}
-
         onEndReached={() => searchForData(false)}
-
-        ListFooterComponent={() => {
-          if (isLoading) {
-            <View style={ListStyle.list}>
-              <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-          }
-        }}
       />
-
     </View>
   );
 }

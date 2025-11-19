@@ -14,7 +14,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='cls' screenOptions={{ headerShown: false }}>
         <Stack.Screen name='cls' component={CharactersListScreen} />
-        <Stack.Screen name='cds' component={CharactersDetailScreen} />
+        <Stack.Screen name='cds' component={CharactersDetailScreen} options={{ animation: "fade_from_bottom" }} />
       </Stack.Navigator>
       <StatusBar hidden={true} />
     </NavigationContainer>
