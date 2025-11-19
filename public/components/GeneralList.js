@@ -81,16 +81,17 @@ export default function GeneralList({ api, navigation }) {
   if (initialLoading)
     return (
       <View style={ListStyle.list}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#0000ff" style={{backgroundColor:'#fff', width: 50, height: 50}} />
       </View>
     );
 
   return (
     <View style={ListStyle.list}>
-      
       <TextInput
         placeholder="Procure pelo nome..."
+        placeholderTextColor={'#fff'}
         onChangeText={specSearch}
+        style={ListStyle.input}
         value={name}
       />
 
@@ -99,13 +100,19 @@ export default function GeneralList({ api, navigation }) {
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={ListStyle.item}
+            style={ListStyle.iniitem}
             onPress={() => navigation.navigate("cds", { pers: `${api}/${item.id}` })}
           >
-            <Image source={{ uri: item.image }} style={{ width: 100, height: 100 }} />
-            <Text style={ListStyle.text}>Nome: {item.name}</Text>
-            <Text style={ListStyle.text}>Status: {item.status}</Text>
-            <Text style={ListStyle.text}>Espécie: {item.species}</Text>
+            <View style={ListStyle.imgItem}>
+              <Image source={{ uri: item.image }} style={{width:'100%', height:'100%',borderRadius:100}} />
+            </View>
+            <View style={{width:150}}>
+              <Text style={[ListStyle.text, {fontWeight:'bold'}]}>{item.name}</Text>
+              <View style={{flexDirection: 'row', gap: 10, display:'flex', justifyContent:'flex-start', alignItems:'center'}}>
+                <Text style={[ListStyle.text, {fontSize: 10, backgroundColor: '#303030', padding: 4, borderRadius:4, color: item.status == 'Alive' ? '#0f0' : '#f00'}]}>{item.status}</Text>
+                <Text style={[ListStyle.text, {fontSize: 10, backgroundColor: '#303030', padding: 4, borderRadius:4}]}>{item.species}</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         )}
         onEndReached={() => searchForData(false)}

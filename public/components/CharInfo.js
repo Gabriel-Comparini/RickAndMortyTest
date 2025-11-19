@@ -26,7 +26,7 @@ export default function CharInfo ({ item }) {
   return(
     <View style={[ListStyle.item, {width: 350}]}>
         <Image source={{ uri: data.image}} style={{ width: 200, height: 200 }} />
-        <Text style={[ListStyle.text, {fontSize: 20, marginTop:15, marginBottom:10, fontStyle: 'italic'}]}>Nome: {data.name}</Text>
+        <Text style={[ListStyle.text, {fontSize: 20, marginTop:15, marginBottom:10, fontStyle: 'italic', fontWeight:'bold'}]}>{data.name}</Text>
         <Text style={[ListStyle.text, {fontSize: opSizes}]}>Status: {data.status}</Text>
         <Text style={[ListStyle.text, {fontSize: opSizes}]}>Espécie: {data.species}</Text>
         <Text style={[ListStyle.text, {fontSize: opSizes}]}>Genero: {data.gender}</Text>
