@@ -16,6 +16,7 @@ export const CLSStyles = StyleSheet.create({
 export const ListStyle = StyleSheet.create({
     list: {
         width: windowWidth - 100,
+        height: windowHeight - 200
     },
     item: {
         display: 'flex',
@@ -46,8 +47,6 @@ export const CDSStyles = StyleSheet.create({
         position: 'absolute',
         top: 100,
         left: 18,
-        borderRadius: 25,
-        backgroundColor:'#525a80ff',
         width: 50,
         height: 50
 

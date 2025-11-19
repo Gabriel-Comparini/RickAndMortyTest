@@ -8,9 +8,9 @@ export default function CharactersDetailScreen({ navigation, route }) {
     return(
         <View style={CDSStyles.container}>
             <TouchableOpacity style={CDSStyles.btn} onPress={() => navigation.goBack()}>
-                <Image href={require('../styles/icons/back-arrow-svgrepo-com.png')} />
+                <Image source={require('../styles/icons/back-arrow-svgrepo-com.png')} style={{width: '100%', height: '100%'}} />
             </TouchableOpacity>
             <CharInfo item={pers} />
         </View>
     );
-}''
+}
